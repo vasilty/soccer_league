@@ -1,4 +1,5 @@
 import csv
+import json
 
 from operator import itemgetter
 
@@ -44,6 +45,15 @@ for team in teams:
             print('{}  Experience: {}'.format(child['Name'],
                                               child['Soccer Experience']))
         print('Average height of {}: {}'.format(key, height/len(value)))
+
+# Print files for a league and for each team
+with open('league.txt', 'w') as leaguefile:
+    json.dump(teams, leaguefile)
+for team in teams:
+    for key, value in team.items():
+        name = key.lower() + '.txt'
+    with open(name, 'w') as teamfile:
+        json.dump(team, teamfile)
 
 # Create letters
 counter = 1
